@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+
+{% block title %}Dashboard{% endblock %}
+
+{% block content %}
+<div class="dashboard-wrapper">
+    <h1>City Data Tree Dashboard</h1>
+    <div class="dashboard-container">
+        <!-- Replace the src attribute with your dashboard's URL -->
+        <iframe 
+            src="https://your-dashboard-url.com" 
+            title="Dashboard"
+            allowfullscreen>
+        </iframe>
+    </div>
+</div>
+<style>
+    .dashboard-wrapper {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 100vh; /* Full viewport height */
+        background-color: #f4f4f9;
+        margin: 0;
+    }
+    h1 {
+        margin-bottom: 20px; /* Adds some space between the title and dashboard */
+        font-size: 2em;
+        color: #333;
+    }
+    .dashboard-container {
+        width: 80%; /* Adjust as needed */
+        height: 70%; /* Adjust as needed */
+        border: 2px solid #ccc;
+        border-radius: 8px;
+        overflow: hidden;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+    iframe {
+        width: 100%;
+        height: 100%;
+        border: none;
+    }
+</style>
+{% endblock %}
+
