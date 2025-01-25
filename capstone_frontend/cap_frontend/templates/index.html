@@ -7,11 +7,9 @@
     <h1>City Data Tree Dashboard</h1>
     <div class="dashboard-container">
         <!-- Replace the src attribute with your dashboard's URL -->
-        <iframe 
-            src="https://your-dashboard-url.com" 
-            title="Dashboard"
-            allowfullscreen>
-        </iframe>
+        <div id="map-container">
+            {{ plot_html|safe }}
+        </div>
     </div>
 </div>
 <style>
