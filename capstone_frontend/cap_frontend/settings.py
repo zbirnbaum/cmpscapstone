@@ -25,7 +25,7 @@ PROJECT_DIR = os.path.join(BASE_DIR, "cap_frontend")
 SECRET_KEY = "django-insecure-z)02rrvcrm$$91jm4q+q80d^)j+)3+49uv@9%pumdx01mh=3y("
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = []
 
