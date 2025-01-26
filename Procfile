@@ -1,1 +1,1 @@
-web: gunicorn capstone_frontend.cap_frontend.wgsi --log-file -
+web: gunicorn capstone_frontend.cap_frontend.wsgi --log-file -
