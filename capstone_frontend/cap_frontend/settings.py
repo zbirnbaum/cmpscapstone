@@ -39,7 +39,8 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
-    "webpage"
+    "webpage",
+    "cap_frontend"
 ]
 
 MIDDLEWARE = [
@@ -77,11 +78,15 @@ WSGI_APPLICATION = "cap_frontend.wsgi.application"
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
 DATABASES = {
-    #"default": {
-    #    "ENGINE": "django.db.backends.sqlite3",
-    #    "NAME": BASE_DIR / "db.sqlite3",
-    #}
-    "default": dj_database_url.config(default="postgres://u2q6a6nh4t6dcm:p39c3e086961b01943c2d12908c6b11ac42d5222dc1fe59f2a730f3503cc9698a@cf980tnnkgv1bp.cluster-czrs8kj4isg7.us-east-1.rds.amazonaws.com:5432/d95jbql7b038pu")
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'd95jbql7b038pu',
+        'USER': 'u2q6a6nh4t6dcm',
+        'PASSWORD': 'p39c3e086961b01943c2d12908c6b11ac42d5222dc1fe59f2a730f3503cc9698a',
+        'HOST': 'cf980tnnkgv1bp.cluster-czrs8kj4isg7.us-east-1.rds.amazonaws.com',
+        'PORT': '5432',
+    }
+    #"default": dj_database_url.config(default="postgres://u2q6a6nh4t6dcm:p39c3e086961b01943c2d12908c6b11ac42d5222dc1fe59f2a730f3503cc9698a@cf980tnnkgv1bp.cluster-czrs8kj4isg7.us-east-1.rds.amazonaws.com:5432/d95jbql7b038pu")
 }
 
 
