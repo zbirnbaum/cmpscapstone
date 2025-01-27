@@ -16,7 +16,7 @@ import dj_database_url
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
-PROJECT_DIR = os.path.join(BASE_DIR, "cap_frontend")
+PROJECT_DIR = os.path.join(BASE_DIR, "capstone_frontend.cap_frontend")
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
@@ -27,7 +27,7 @@ SECRET_KEY = "django-insecure-z)02rrvcrm$$91jm4q+q80d^)j+)3+49uv@9%pumdx01mh=3y(
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['0.0.0.0']
+ALLOWED_HOSTS = ['0.0.0.0', '127.0.0.1']
 
 
 # Application definition
@@ -39,8 +39,8 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
-    "webpage",
-    "cap_frontend"
+    "capstone_frontend.webpage",
+    "capstone_frontend.cap_frontend"
 ]
 
 MIDDLEWARE = [
@@ -53,7 +53,7 @@ MIDDLEWARE = [
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
 ]
 
-ROOT_URLCONF = "cap_frontend.urls"
+ROOT_URLCONF = "capstone_frontend.cap_frontend.urls"
 
 TEMPLATES = [
     {
@@ -71,7 +71,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = "cap_frontend.wsgi.application"
+WSGI_APPLICATION = "capstone_frontend.cap_frontend.wsgi.application"
 
 
 # Database

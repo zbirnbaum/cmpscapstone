@@ -21,6 +21,7 @@ def index(request):
     dummy_data = Calls.objects.all()
 
     data = pd.DataFrame(list(dummy_data.values()))
+    data['text'] = "Request Number:  " + data['request_number'].astype(str)
 
     fig = go.Figure()
 
@@ -28,7 +29,7 @@ def index(request):
         go.Scattermapbox(
             lat=data['latitude'],
             lon=data['longitude'],
-            text=data['request_number'],
+            text=data['text'],
             mode='markers',
             marker=dict(size=6, color='red'),
             name='Open Tree-Related 311 Reports'

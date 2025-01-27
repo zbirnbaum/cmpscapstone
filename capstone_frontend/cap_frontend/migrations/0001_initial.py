@@ -229,7 +229,7 @@ class Migration(migrations.Migration):
                         on_delete=django.db.models.deletion.DO_NOTHING,
                         primary_key=True,
                         serialize=False,
-                        to="cap_frontend.calls",
+                        to="capstone_frontend.cap_frontend.calls",
                     ),
                 ),
                 ("location", models.TextField(blank=True, null=True)),
