@@ -15,12 +15,12 @@ def home(request):
 new_orleans_center = {"lon": -90.07, "lat": 29.95}
 
 
-# Add dummy data to the map of NOLA
+# Queries data to put on the map
 def index(request):
 
-    dummy_data = Calls.objects.all()
+    calls = Calls.objects.exclude(request_status="Closed").values()
+    data = pd.DataFrame(list(calls))
 
-    data = pd.DataFrame(list(dummy_data.values()))
     data['text'] = "Request Number:  " + data['request_number'].astype(str)
 
     fig = go.Figure()
@@ -43,7 +43,3 @@ def index(request):
     plot_html = pio.to_html(fig, full_html=False)
 
     return render(request, 'index.html', {'plot_html': plot_html})
-
-#def data_view(request):#
-    #data = Calls.objects.all()  # Fetch all data from the DummyData table
-    #return render(request, 'my_app/data_template.html', {'data': data})
