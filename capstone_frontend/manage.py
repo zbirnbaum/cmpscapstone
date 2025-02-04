@@ -6,7 +6,7 @@ import sys
 
 def main():
     """Run administrative tasks."""
-    os.environ.setdefault("DJANGO_SETTINGS_MODULE", "capstone_frontend.cap_frontend.settings")
+    os.environ.setdefault("DJANGO_SETTINGS_MODULE", "cap_frontend.settings")
     try:
         from django.core.management import execute_from_command_line
     except ImportError as exc:
@@ -15,6 +15,7 @@ def main():
             "available on your PYTHONPATH environment variable? Did you "
             "forget to activate a virtual environment?"
         ) from exc
+    sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
     execute_from_command_line(sys.argv)
 
 
