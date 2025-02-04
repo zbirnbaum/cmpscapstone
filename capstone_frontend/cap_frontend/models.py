@@ -5,11 +5,12 @@
 #   * Make sure each ForeignKey and OneToOneField has `on_delete` set to the desired behavior
 #   * Remove `managed = False` lines if you wish to allow Django to create, modify, and delete the table
 # Feel free to rename the models, but don't rename db_table values or field names.
+from django.apps import apps
 from django.db import models
 
 
 class Calls(models.Model):
-    request_number = models.IntegerField(primary_key=True)
+    request_number = models.TextField(primary_key=True)
     request_type = models.TextField(blank=True, null=True)
     reason = models.TextField(blank=True, null=True)
     date_created = models.TextField(blank=True, null=True)
@@ -23,8 +24,8 @@ class Calls(models.Model):
     contractor = models.TextField(blank=True, null=True)
     contractor_action = models.TextField(blank=True, null=True)
     longitude = models.FloatField(blank=True, null=True)
-    latitude = models.FloatField(blank=True, null=True)
-    location = models.TextField(blank=True, null=True)
+    latitude = models.FloatField(blank=True, null=True, db_index=True)
+    location = models.TextField(blank=True, null=True, db_index=True)
 
     class Meta:
         managed = False
