@@ -1,14 +1,11 @@
 from django.http import HttpResponse
 from django.template import loader
 from django.shortcuts import render
-from django.templatetags.static import static
 from .models import Calls, Trees
 
 import plotly.graph_objects as go
 import pandas as pd
 import plotly.io as pio
-
-
 
 def home(request):
     return render(request, 'index.html')
@@ -18,11 +15,8 @@ def home(request):
 new_orleans_center = {"lon": -90.07, "lat": 29.95}
 
 
-
 # Queries data to put on the map
 def index(request):
-
-    tree_image_url = static('img/live_oak_2_img.jpg')
 
     calls = Calls.objects.exclude(request_status="Closed").values()
     data = pd.DataFrame(list(calls))
@@ -50,29 +44,16 @@ def index(request):
             text=tree_related_311['text'],
             mode='markers',
             marker=dict(size=6, color='green'),
-            name='Open Tree-Related 311 Reports'  
+            name='Open Tree-Related 311 Reports'
+        )
     )
-)
-
-    
 
     fig.update_layout(
-    images=[
-        dict(
-            source=tree_image_url,  # Use static URL
-            xref="paper",
-            yref="paper",
-            x=0.5,
-            y=0.5,
-            sizex=0.1,
-            sizey=0.1,
-            xanchor="center",
-            yanchor="middle"
-        )
-    ]
-)
-    
+        mapbox=dict(center=new_orleans_center, zoom=10, style="open-street-map")
+    )
+
     plot_html = pio.to_html(fig, full_html=False)
 
     return render(request, 'index.html', {'plot_html': plot_html})
+
 
