@@ -14,6 +14,7 @@ def home(request):
 
 new_orleans_center = {"lon": -90.07, "lat": 29.95}
 
+MAPBOX_ACCESS_TOKEN = "sk.eyJ1IjoiZGNpY2VybzIiLCJhIjoiY202c2FlZ29uMDZoZzJrcHBjZnB2c3BjMSJ9.WM3iGH-rQrXsXe4TQIULzQ"
 
 # Queries data to put on the map
 def index(request):
