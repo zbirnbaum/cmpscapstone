@@ -1,7 +1,7 @@
 from django.http import HttpResponse
 from django.template import loader
 from django.shortcuts import render
-from .models import Calls
+from .models import Calls, Trees
 
 import plotly.graph_objects as go
 import pandas as pd
@@ -21,15 +21,27 @@ def index(request):
     calls = Calls.objects.exclude(request_status="Closed").values()
     data = pd.DataFrame(list(calls))
 
-    data['text'] = "Request Number:  " + data['request_number'].astype(str)
+    tree_related_311 = data[data['reason'].isin(['Request Tree Service (Right of Way/Public Property)',
+       'Tree Stump (removal, grind)',
+       'Hurricane Francine Tree-Related Issues or Emergencies',
+       'Trucks hitting overhead oak tree limbs',
+       'Sidewalk repair after tree removal',
+       'Oak tree blocking water line',
+       'Tree roots',
+       'Christmas Tree Recycle Pick Up'])]
+
+    trees = Trees.objects.values()
+    treesdata = pd.DataFrame(list(trees))
+
+    tree_related_311['text'] = "Request Number:  " + tree_related_311['request_number'].astype(str)
 
     fig = go.Figure()
 
     fig.add_trace(
         go.Scattermapbox(
-            lat=data['latitude'],
-            lon=data['longitude'],
-            text=data['text'],
+            lat=tree_related_311['latitude'],
+            lon=tree_related_311['longitude'],
+            text=tree_related_311['text'],
             mode='markers',
             marker=dict(size=6, color='red'),
             name='Open Tree-Related 311 Reports'

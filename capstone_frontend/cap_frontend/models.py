@@ -156,7 +156,7 @@ class Photos(models.Model):
 
 
 class Trees(models.Model):
-    tree_id = models.IntegerField(primary_key=True)
+    tree_id = models.TextField(primary_key=True)
     common_name = models.TextField(blank=True, null=True)
     botanical_name = models.TextField(blank=True, null=True)
     location = models.TextField(blank=True, null=True)
