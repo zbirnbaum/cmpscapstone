@@ -49,11 +49,10 @@ def index(request):
             lon=tree_related_311['longitude'],
             text=tree_related_311['text'],
             mode='markers',
-             marker=dict(size=6, color='green'),  
-            ),
-            name='Open Tree-Related 311 Reports'
+            marker=dict(size=6, color='green'),
+            name='Open Tree-Related 311 Reports'  
     )
-    
+)
 
     
 
