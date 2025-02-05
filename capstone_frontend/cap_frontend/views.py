@@ -37,21 +37,29 @@ def index(request):
 
     fig = go.Figure()
 
-    fig.add_trace(
-        go.Scattermapbox(
-            lat=tree_related_311['latitude'],
-            lon=tree_related_311['longitude'],
-            text=tree_related_311['text'],
-            mode='markers',
-            marker=dict(size=6, color='red'),
-            name='Open Tree-Related 311 Reports'
-        )
+fig.add_trace(
+    go.Scattermapbox(
+        lat=tree_related_311['latitude'],
+        lon=tree_related_311['longitude'],
+        text=tree_related_311['text'],
+        mode='markers',
+        marker=dict(
+            size=20,  
+            symbol="tree"  # Built-in Mapbox tree icon
+        ),
+        name='Open Tree-Related 311 Reports'
     )
+)
 
-    fig.update_layout(
-        mapbox=dict(center=new_orleans_center, zoom=10, style="open-street-map")
-    )
-
+fig.update_layout(
+    mapbox=dict(
+        center=new_orleans_center,
+        zoom=10,
+        style="open-street-map"
+    ),
+    mapbox_accesstoken="sk.eyJ1IjoiZGNpY2VybzIiLCJhIjoiY202c2FlZ29uMDZoZzJrcHBjZnB2c3BjMSJ9.WM3iGH-rQrXsXe4TQIULzQ"  # Required for Mapbox symbols
+)
+    
     plot_html = pio.to_html(fig, full_html=False)
 
     return render(request, 'index.html', {'plot_html': plot_html})
