@@ -3,13 +3,16 @@
     <head>
         <meta charset="utf-8">
         <title>{% block title %} City Data Tree Dashboard {% endblock %}</title>
-        
+
+        <!-- Import Google Font -->
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+
         <style>
-            /* Default (Light Mode) Styles */
+            /* Apply Better Font */
             body {
                 background-color: white;
                 color: black;
-                font-family: Arial, sans-serif;
+                font-family: 'Inter', Arial, sans-serif;  /* Modern, clean font */
                 transition: background-color 0.3s, color 0.3s;
             }
 
@@ -23,7 +26,7 @@
                 text-decoration: none;
                 padding: 12px 20px;
                 font-size: 18px;
-                font-weight: bold;
+                font-weight: 600;  /* Make text clearer */
                 color: white;
                 border-radius: 5px;
                 transition: background-color 0.3s ease, color 0.3s ease;
@@ -38,9 +41,9 @@
             }
 
             /* Dark Mode Styles */
-              .dark-mode {
+            .dark-mode {
                 background-color: #1e1e1e;
-                color: #ffffff;  /* FULL WHITE TEXT */
+                color: #ffffff;  /* Full white text for readability */
             }
 
             .dark-mode nav {
@@ -48,14 +51,14 @@
             }
 
             .dark-mode a {
-                color: #ffffff;  /* FULL WHITE NAV LINKS */
+                color: #ffffff;
             }
 
             .dark-mode a:hover {
                 color: #f0f0f0;
             }
 
-            /* Dark Mode Button */
+            /* Dark Mode Toggle Button */
             #darkModeToggle {
                 position: absolute;
                 top: 10px;
@@ -67,6 +70,8 @@
                 cursor: pointer;
                 border-radius: 5px;
                 font-size: 14px;
+                font-weight: 600;
+                font-family: 'Inter', Arial, sans-serif;
                 transition: background-color 0.3s ease, color 0.3s ease;
             }
 
@@ -78,7 +83,7 @@
     
     <body>
         <!-- Dark Mode Toggle Button -->
-        <button id="darkModeToggle">Toggle Dark Mode</button>
+        <button id="darkModeToggle">🌙 Toggle Dark Mode</button>
 
         <nav>
             <a href="{% url 'index' %}" class="{% if request.path == '/' %}active{% endif %}">HOME</a>
