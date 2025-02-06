@@ -58,8 +58,9 @@
 
             /* Dark Mode Styles */
             .dark-mode {
-                background-color: #121212;
+                background-color: #121212;  /* Dark background for entire page */
                 color: #ffffff;
+                height: 100%; /* Ensures full page height in dark mode */
             }
 
             .dark-mode nav {
@@ -99,7 +100,7 @@
     
     <body>
         <!-- Dark Mode Toggle Button -->
-        <button id="darkModeToggle">🌙 Toggle Dark Mode</button>
+        <button id="darkModeToggle">Toggle Dark Mode</button>
 
         <nav>
             <a href="{% url 'index' %}" class="{% if request.path == '/' %}active{% endif %}">HOME</a>
