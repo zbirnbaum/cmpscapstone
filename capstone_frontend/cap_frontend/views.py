@@ -7,10 +7,10 @@ import plotly.graph_objects as go
 import pandas as pd
 import plotly.io as pio
 
-def home(request):
+def index(request):
     return render(request, 'index.html')
-    #template = loader.get_template('home.html')
-    #return HttpResponse(template.render({}, request))
+def about(request):
+    return render(request, 'about.html')
 
 new_orleans_center = {"lon": -90.07, "lat": 29.95}
 
