@@ -3,9 +3,27 @@
     <head>
         <meta charset="utf-8">
         <title>{% block title %} City Data Tree Dashboard {% endblock %}</title>
+        <style>
+            body{
+                background-color: white;
+            }
+            div span a{
+                text-decoration: none;
+                padding: 10px;
+                margin-right: 10px;
+                font-size: 20px;
+                font-weight: bold;
+                color: black;
+                padding-top: 20px;
+            }
+        </style>
     </head>
     <body>
-    {% include 'nav.html' %}
+        <div>
+            <span><a href="{% url 'index' %}" class="{% if request.path == '/' %}active{% endif %}">HOME</a></span>
+            <span><a href="{% url 'about' %}" class="{% if request.path == '/about/' %}active{% endif %}">ABOUT</a></span>
+        </div>
+    
         <main>
             {% block content %}
             {% endblock %}
