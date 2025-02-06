@@ -50,6 +50,9 @@ def index(request):
 
     fig.update_layout(
         mapbox=dict(center=new_orleans_center, zoom=10, style="open-street-map")
+        autosize=True,
+        width=1200,
+        height=900,
     )
 
     plot_html = pio.to_html(fig, full_html=False)
