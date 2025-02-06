@@ -8,116 +8,77 @@
         <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
 
         <style>
-            /* General Styles */
-            * {
-                margin: 0;
-                padding: 0;
-                box-sizing: border-box;
-            }
+           /* General Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
-            html, body {
-                height: 100%;  
-                font-family: 'Inter', Arial, sans-serif;
-                transition: background-color 0.5s, color 0.5s;
-            }
+html, body {
+    height: 100%;  /* Ensure the page takes up the full viewport height */
+    font-family: 'Inter', Arial, sans-serif;
+    transition: background-color 1s, color 1s;
+}
 
-            /* Light Mode Styles */
-            body {
-                background-color: white;
-                color: black;
-            }
+body {
+    background-color: white;
+    color: black;
+}
 
-            nav {
-                background-color: #004d00;
-                padding: 15px;
-                text-align: center;
-            }
-
-            nav a {
-                text-decoration: none;
-                padding: 12px 20px;
-                font-size: 18px;
-                font-weight: 600;
-                color: white;
-                border-radius: 5px;
-                transition: background-color 0.3s ease, color 0.3s ease;
-            }
-
-            nav a:hover {
-                background-color: #008000;
-            }
-
-            .active {
-                background-color: #006400;
-            }
-
-            main {
-                min-height: 100vh;  
-                padding: 20px;
-            }
-
-            /* Dark Mode Styles */
+/* Dark Mode Styles */
 .dark-mode {
-    background-color: #121212;
+    background-color: #121212;  /* Dark background */
     color: #ffffff;
-    height: 100%;
-    min-height: 100vh;
+}
+
+html, body {
+    min-height: 100%; /* Ensure the background fills the page even when scrolling */
+}
+
+/* Dark Mode body specific background */
+.dark-mode body {
+    background-color: #121212; /* Dark background */
 }
 
 /* Title text color */
 .dark-mode h1 {
-    color: #ffffff; 
+    color: #ffffff; /* Ensure title text is white in dark mode */
 }
 
-
-
-/* Adjust for specific title text in the header */
-.dark-mode .title {
-    color: #ffffff; 
+.dark-mode nav {
+    background-color: black;
 }
 
-
-html, body {
-    height: 100%;
+.dark-mode a {
+    color: #ffffff;
 }
 
-.dark-mode body {
-    background-color: #a9a9a9; 
+.dark-mode a:hover {
+    color: #f0f0f0;
 }
 
-            .dark-mode nav {
-                background-color: black;
-            }
+/* Dark Mode Toggle Button */
+#darkModeToggle {
+    position: fixed;
+    top: 10px;
+    right: 20px;
+    background-color: #444;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 14px;
+    font-weight: 600;
+    font-family: 'Inter', Arial, sans-serif;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    z-index: 1000;
+}
 
-            .dark-mode a {
-                color: #ffffff;
-            }
-
-            .dark-mode a:hover {
-                color: #f0f0f0;
-            }
-
-            /* Dark Mode Toggle Button */
-            #darkModeToggle {
-                position: fixed;
-                top: 10px;
-                right: 20px;
-                background-color: #444;
-                color: white;
-                border: none;
-                padding: 10px 15px;
-                cursor: pointer;
-                border-radius: 5px;
-                font-size: 14px;
-                font-weight: 600;
-                font-family: 'Inter', Arial, sans-serif;
-                transition: background-color 0.3s ease, color 0.3s ease;
-                z-index: 1000;
-            }
-
-            #darkModeToggle:hover {
-                background-color: #666;
-            }
+#darkModeToggle:hover {
+    background-color: #666;
+}
         </style>
     </head>
     
