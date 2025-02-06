@@ -26,7 +26,7 @@
                 font-weight: bold;
                 color: white;
                 border-radius: 5px;
-                transition: background-color 0.3s ease;
+                transition: background-color 0.3s ease, color 0.3s ease;
             }
 
             nav a:hover {
@@ -40,7 +40,7 @@
             /* Dark Mode Styles */
             .dark-mode {
                 background-color: #1e1e1e;
-                color: white;
+                color: #e0e0e0;  /* Lighter gray text for readability */
             }
 
             .dark-mode nav {
@@ -48,7 +48,11 @@
             }
 
             .dark-mode a {
-                color: lightgray;
+                color: #f0f0f0;  /* Lighter navigation links */
+            }
+
+            .dark-mode a:hover {
+                color: #ffffff;
             }
 
             /* Dark Mode Button */
@@ -56,18 +60,18 @@
                 position: absolute;
                 top: 10px;
                 right: 20px;
-                background-color: #333;
+                background-color: #444;
                 color: white;
                 border: none;
                 padding: 10px 15px;
                 cursor: pointer;
                 border-radius: 5px;
                 font-size: 14px;
-                transition: background-color 0.3s ease;
+                transition: background-color 0.3s ease, color 0.3s ease;
             }
 
             #darkModeToggle:hover {
-                background-color: #555;
+                background-color: #666;
             }
         </style>
     </head>
