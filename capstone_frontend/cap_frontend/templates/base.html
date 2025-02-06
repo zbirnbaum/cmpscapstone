@@ -58,10 +58,20 @@
 
             /* Dark Mode Styles */
             .dark-mode {
-                background-color: #121212;  /* Dark background for entire page */
-                color: #ffffff;
-                height: 100%; /* Ensures full page height in dark mode */
-            }
+    background-color: #121212;  /* Dark background for entire page */
+    color: #ffffff;
+    height: 100%; /* Ensures full page height in dark mode */
+    min-height: 100vh; /* Prevents content from being cut off */
+}
+
+/* Ensuring html and body elements stretch across the entire viewport */
+html, body {
+    height: 100%;
+}
+
+.dark-mode body {
+    background-color: #121212; /* Ensure the body background is dark */
+}
 
             .dark-mode nav {
                 background-color: black;
