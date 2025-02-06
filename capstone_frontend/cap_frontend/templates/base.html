@@ -8,12 +8,23 @@
         <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
 
         <style>
-            /* Apply Better Font */
+            /* General Styles */
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+            }
+
+            html, body {
+                height: 100%;  /* Ensures full-page dark mode */
+                font-family: 'Inter', Arial, sans-serif;
+                transition: background-color 0.3s, color 0.3s;
+            }
+
+            /* Light Mode Styles */
             body {
                 background-color: white;
                 color: black;
-                font-family: 'Inter', Arial, sans-serif;  /* Modern, clean font */
-                transition: background-color 0.3s, color 0.3s;
             }
 
             nav {
@@ -26,7 +37,7 @@
                 text-decoration: none;
                 padding: 12px 20px;
                 font-size: 18px;
-                font-weight: 600;  /* Make text clearer */
+                font-weight: 600;
                 color: white;
                 border-radius: 5px;
                 transition: background-color 0.3s ease, color 0.3s ease;
@@ -40,10 +51,15 @@
                 background-color: #006400;
             }
 
+            main {
+                min-height: 100vh;  /* Ensures content area also fills the page */
+                padding: 20px;
+            }
+
             /* Dark Mode Styles */
             .dark-mode {
-                background-color: #1e1e1e;
-                color: #ffffff;  /* Full white text for readability */
+                background-color: #121212;
+                color: #ffffff;
             }
 
             .dark-mode nav {
@@ -60,7 +76,7 @@
 
             /* Dark Mode Toggle Button */
             #darkModeToggle {
-                position: absolute;
+                position: fixed;
                 top: 10px;
                 right: 20px;
                 background-color: #444;
@@ -116,3 +132,4 @@
         </script>
     </body>
 </html>
+
