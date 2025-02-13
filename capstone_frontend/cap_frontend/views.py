@@ -50,7 +50,7 @@ def index(request):
 
     fig.update_layout(
         mapbox=dict(center=new_orleans_center, zoom=10, style="open-street-map"),
-        autosize=True,
+        #autosize=True,
         width=1200,
         height=900,
         dragmode = 'pan'
