@@ -3,20 +3,43 @@
 {% block title %}City Data Tree Dashboard{% endblock %}
 
 {% block content %}
-    <center>
-    <h1>About Our Capstone Project</h1>
-    <p style="font-size: 20px; margin: 100px;">The City Data Group is developing an interactive dashboard that highlights 
+    <h1 style = "text-align: center;">About Our Capstone Project</h1>
+
+    <div style="display: flex; justify-content: space-between; padding: 50px; gap: 30px;">
+        <div style="width: 50%; padding-right: 10px; border: 2px solid black; padding: 20px; border-radius: 10px;">
+            <p style="font-size: 20px; text-align: center;">The City Data Group is developing an interactive dashboard that highlights 
         reported tree hazards in New Orleans, the severity of each report, and provides precise locations of tree damage, 
         offering a clear and accessible view of the city's tree maintenance needs. Information is sourced from the 311 
         OPCD calls and Tree Location datasets from data.nola.gov. Our goal is to incorporate the Tree Location data to 
         show the nearest city-owned trees to the report. Additionally, we plan to improve interactivity by incorporating
         features that will allow residents to upload photos and comment on specific cases, with the goals of fostering 
-        community engagement, improving data accuracy, and providing additional context. </p>
-    <p style="font-size: 20px; margin: 50px; text-align: center;">
-    Team Members: Zoe Birnbaum, Daniel Cicero, Cece Haase, Gabby Reese
+        community engagement, improving data accuracy, and providing additional context.</p>
+        </div>
+
+        <div style="width: 50%; padding-left: 10px; border: 2px solid black; padding: 20px; border-radius: 10px;">
+            <p style="font-size: 20px; margin-bottom: 10px;"><b>Roadmap:</b></p>
+                <p style="font-size: 19px; padding-left: 5px;">By End of February:</p>
+                    <ul style="font-size: 17px; padding-left: 30px;">
+                        <li>User can hover on report point and see relevant ticket information (number, address, type, status)</li>
+                        <li>User can click on report point and see list of 3 nearest trees</li>
+                    </ul>
+                <p style="font-size: 19px; padding-left: 5px; margin-top: 8px;">By End of March:</p>
+                    <ul style="font-size: 17px; padding-left: 30px;">
+                        <li>User can click on report point and the 3 nearest trees will appear on the map</li>
+                        <li>User has the option to upload photos and comments to report point</li>
+                    </ul>
+                <p style="font-size: 19px; padding-left: 5px; margin-top: 8px;">By End of April:</p>
+                    <ul style="font-size: 17px; padding-left: 30px;">
+                        <li>When user clicks on report point, they can see other users' photos and comments in addition to ticket information from the dataset</li>
+                        <li>In addition to "Home" and "About", there will be an "Analytics" page displaying statistics such as average ticket working time per ward</li>
+                    </ul>
+        </div>
+    </div>
+    <p style="font-size: 20px; margin: 30px; text-align: center;">
+    <b>Team Members:</b> Zoe Birnbaum, Daniel Cicero, Cece Haase, Gabby Reese
 </p>
-<p style="font-size: 20px; margin: 50px; text-align: center;">
-    Advisor: Dr. Nick Mattei
+<p style="font-size: 20px; margin: 30px; text-align: center;">
+    <b>Advisor:</b> Dr. Nick Mattei
 </p>
     </center>
 {% endblock %}
