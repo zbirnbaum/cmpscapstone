@@ -40,15 +40,16 @@ def index(request):
     fig = go.Figure()
 
     fig.add_trace(
-        go.Scattermapbox(
-            lat=tree_related_311['latitude'],
-            lon=tree_related_311['longitude'],
-            text=tree_related_311['text'],
-            mode='markers',
-            marker=dict(size=6, color='green'),
-            name='Open Tree-Related 311 Reports'
-        )
+    go.Scattermapbox(
+        lat=tree_related_311['latitude'],
+        lon=tree_related_311['longitude'],
+        text=tree_related_311['text'],
+        mode='markers',
+        marker=dict(size=6, color='green'),
+        name='Open Tree-Related 311 Reports',
+        customdata=tree_related_311[['request_number', 'reason', 'address']].values.tolist()  # Add extra data
     )
+)
 
     fig.update_layout(
         mapbox=dict(center=new_orleans_center, zoom=10, style="open-street-map"),
