@@ -11,6 +11,8 @@ def index(request):
     return render(request, 'index.html')
 def about(request):
     return render(request, 'about.html')
+def analytics(request):
+    return render(request, 'analytics.html')
 
 new_orleans_center = {"lon": -90.07, "lat": 29.95}
 
