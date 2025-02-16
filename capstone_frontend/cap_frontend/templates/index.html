@@ -56,4 +56,43 @@
         border: none;
     }
 </style>
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+    var myPlot = document.getElementById('map-container');
+
+    myPlot.on('plotly_click', function(data) {
+        var point = data.points[0]; 
+        var requestNumber = point.customdata[0]; 
+        var reason = point.customdata[1];  
+        var address = point.customdata[2]; 
+
+        var treeInfo = `
+            <b>Request Number:</b> ${requestNumber}<br>
+            <b>Issue:</b> ${reason}<br>
+            <b>Address:</b> ${address}
+        `;
+        showTreeMenu(treeInfo, event.clientX, event.clientY);
+    });
+});
+
+function showTreeMenu(info, x, y) {
+    let menu = document.getElementById("tree-info");
+    if (!menu) {
+        menu = document.createElement("div");
+        menu.id = "tree-info";
+        document.body.appendChild(menu);
+    }
+
+    menu.innerHTML = info;
+    menu.style.position = "absolute";
+    menu.style.left = `${x}px`;
+    menu.style.top = `${y}px`;
+    menu.style.backgroundColor = "white";
+    menu.style.padding = "10px";
+    menu.style.border = "1px solid black";
+    menu.style.borderRadius = "5px";
+    menu.style.boxShadow = "0px 4px 8px rgba(0, 0, 0, 0.2)";
+}
+</script>
+
 {% endblock %}
