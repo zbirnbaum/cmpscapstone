@@ -133,6 +133,8 @@ html, body {
         <nav>
             <a href="{% url 'index' %}" class="{% if request.path == '/' %}active{% endif %}">HOME</a>
             <a href="{% url 'about' %}" class="{% if request.path == '/about/' %}active{% endif %}">ABOUT</a>
+            <a href="{% url 'analytics' %}" class="{% if request.path == '/analytics/' %}active{% endif %}">ANALYTICS</a>
+
         </nav>
 
         <main>
