@@ -10,6 +10,24 @@
         <div id="map-container">
             {{ plot_html|safe }}
         </div>
+            <!-- Popup box (when report point is clicked on) -->
+            <div id="popup-box" style="
+                position: fixed;
+                top:0px;
+                bottom:0px;
+                left: 1px;
+                width: 300px;
+                min-height: 100vh;
+                padding: 15px;
+                background: white;
+                border: 2px solid black;
+                box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
+                display: none; /* Initially hidden */
+                z-index: 1000;
+            ">
+                <span id="close-popup" style="cursor: pointer; float: right; font-weight: bold;">&times;</span>
+                <p id="popup-content" style="line-height: 1.6;">Click a point to see details.</p>
+            </div>
     </div>
 </div>
 <style>
@@ -40,7 +58,7 @@
         width: 90%; /* Adjust as needed */
         max-width: 1200px;
         height: auto;
-        min-height: 85vh /* Adjust as needed */
+        min-height: 85vh; /* Adjust as needed */
         border: 1px solid #ccc;
         border-radius: 1.5px;
         overflow: hidden;
@@ -57,41 +75,56 @@
     }
 </style>
 <script>
-document.addEventListener("DOMContentLoaded", function () {
-    var myPlot = document.getElementById('map-container');
+document.addEventListener("DOMContentLoaded", function(){
+    function attachPlotlyClickHandler() {
+        var myPlot = document.querySelector(".plotly-graph-div"); 
 
-    myPlot.on('plotly_click', function(data) {
-        var point = data.points[0]; 
-        var requestNumber = point.customdata[0]; 
-        var reason = point.customdata[1];  
-        var address = point.customdata[2]; 
+        if (myPlot) {
+            console.log("Plotly figure found.");
 
-        var treeInfo = `
-            <b>Request Number:</b> ${requestNumber}<br>
-            <b>Issue:</b> ${reason}<br>
-            <b>Address:</b> ${address}
-        `;
-        showTreeMenu(treeInfo, event.clientX, event.clientY);
-    });
-});
+            myPlot.on('plotly_click', function(data) {
+                console.log("Point clicked:", data);
 
-function showTreeMenu(info, x, y) {
-    let menu = document.getElementById("tree-info");
-    if (!menu) {
-        menu = document.createElement("div");
-        menu.id = "tree-info";
-        document.body.appendChild(menu);
+                var point = data.points[0]; 
+                var request_number = point.customdata[0];
+                var address = point.customdata[1];
+                var reason = point.customdata[2];
+                var status = point.customdata[3];
+                var date_created = point.customdata[4];  
+
+                var ticketInfo = `
+                    <h3>Request: ${request_number}</h3><br>
+                    <b>Location:</b> ${address}<br>
+                    <b>Issue:</b> ${reason}<br>
+                    <b>Status:</b> ${status}<br>
+                    <b>Ticket created on:</b> ${date_created}<br>
+                `;
+                showPopupBox(ticketInfo, event.clientX, event.clientY);
+            });
+        } else {
+            console.log("Plotly figure not found yet. Retrying...");
+            setTimeout(attachPlotlyClickHandler, 500); 
+        }
     }
 
-    menu.innerHTML = info;
-    menu.style.position = "absolute";
-    menu.style.left = `${x}px`;
-    menu.style.top = `${y}px`;
-    menu.style.backgroundColor = "white";
-    menu.style.padding = "10px";
-    menu.style.border = "1px solid black";
-    menu.style.borderRadius = "5px";
-    menu.style.boxShadow = "0px 4px 8px rgba(0, 0, 0, 0.2)";
+    attachPlotlyClickHandler(); 
+});
+function showPopupBox(info, x, y) {
+    let popupBox = document.getElementById("popup-box");
+    let popupContent = document.getElementById("popup-content");
+
+    if (!popupBox || !popupContent) {
+        console.error("Popup box elements not found.");
+        return;
+    }
+
+    popupContent.innerHTML = info;
+    popupBox.style.display = "block"; // Show popup
+
+    let closeButton = document.getElementById("close-popup");
+    closeButton.addEventListener("click", function() {
+        popupBox.style.display = "none"; // Hide popup 
+    });
 }
 </script>
 
