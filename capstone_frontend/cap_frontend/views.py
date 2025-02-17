@@ -30,33 +30,40 @@ def index(request):
        'Sidewalk repair after tree removal',
        'Oak tree blocking water line',
        'Tree roots',
-       'Christmas Tree Recycle Pick Up'])]
+       'Christmas Tree Recycle Pick Up'])].copy()
 
     trees = Trees.objects.values()
     treesdata = pd.DataFrame(list(trees))
 
-    tree_related_311['text'] = "Request Number:  " + tree_related_311['request_number'].astype(str)
+    tree_related_311["hover_text"] = (
+    "<b>Request Number</b>: " + tree_related_311["request_number"] + 
+    "<br><b>Address</b>: " + tree_related_311["address"].astype(str)
+    )
 
     fig = go.Figure()
 
     fig.add_trace(
-    go.Scattermapbox(
-        lat=tree_related_311['latitude'],
-        lon=tree_related_311['longitude'],
-        text=tree_related_311['text'],
-        mode='markers',
-        marker=dict(size=6, color='green'),
-        name='Open Tree-Related 311 Reports',
-        customdata=tree_related_311[['request_number', 'reason', 'address']].values.tolist()  # Add extra data
+        go.Scattermap(
+            hoverlabel=dict(bgcolor="white", font_size=12),
+            hoverinfo="text",
+            hovertext = tree_related_311["hover_text"],
+            lat=tree_related_311['latitude'],
+            lon=tree_related_311['longitude'],
+            mode='markers',
+            marker=dict(size=6, color='green'),
+            customdata= tree_related_311[['request_number', 'address', 'reason', 'status', 'date_created']].values.tolist()
+        )
     )
-)
+
 
     fig.update_layout(
-        mapbox=dict(center=new_orleans_center, zoom=10, style="open-street-map"),
+        map=dict(center=new_orleans_center, zoom=10, style="open-street-map"),
         #autosize=True,
         width=1200,
         height=900,
-        dragmode = 'pan'
+        dragmode = 'pan',
+        clickmode = 'event+select',
+        hovermode='closest'
     )
 
     plot_html = pio.to_html(fig, full_html=False)
