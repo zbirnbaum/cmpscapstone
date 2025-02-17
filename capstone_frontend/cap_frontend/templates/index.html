@@ -92,12 +92,27 @@ document.addEventListener("DOMContentLoaded", function(){
                 var status = point.customdata[3];
                 var date_created = point.customdata[4];  
 
+                var date_created_display = new Date(date_created);
+                var options= {
+                    month: '2-digit',
+                    day: '2-digit',
+                    year: 'numeric',
+                    hour: '2-digit',
+                    minute: '2-digit',
+                    hour12: true
+                };
+
+                var date_created_display = date_created_display.toLocaleString('en-US', {
+                    ...options,
+                    timeZone: 'America/Chicago'
+                });
+
                 var ticketInfo = `
                     <h3>Request: ${request_number}</h3><br>
                     <b>Location:</b> ${address}<br>
                     <b>Issue:</b> ${reason}<br>
                     <b>Status:</b> ${status}<br>
-                    <b>Ticket created on:</b> ${date_created}<br>
+                    <b>Ticket created on:</b> ${date_created_display}<br>
                 `;
                 showPopupBox(ticketInfo, event.clientX, event.clientY);
             });
