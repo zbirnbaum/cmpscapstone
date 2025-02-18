@@ -6,74 +6,81 @@
 <div class="dashboard-wrapper">
     <h1>City Data Tree Dashboard</h1>
     <div class="dashboard-container">
-        <!-- Replace the src attribute with your dashboard's URL -->
         <div id="map-container">
             {{ plot_html|safe }}
         </div>
-            <!-- Popup box (when report point is clicked on) -->
-            <div id="popup-box" style="
-                position: fixed;
-                top:0px;
-                bottom:0px;
-                left: 1px;
-                width: 300px;
-                min-height: 100vh;
-                padding: 15px;
-                background: white;
-                border: 2px solid black;
-                box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
-                display: none; /* Initially hidden */
-                z-index: 1000;
-            ">
-                <span id="close-popup" style="cursor: pointer; float: right; font-weight: bold;">&times;</span>
-                <p id="popup-content" style="line-height: 1.6;">Click a point to see details.</p>
-            </div>
+
+        <!-- Popup box (when report point is clicked on) -->
+        <div id="popup-box" style="
+            position: fixed;
+            top: 0;
+            bottom: 0;
+            left: 1px;
+            width: 300px;
+            min-height: 100vh;
+            padding: 15px;
+            background: white;
+            border: 2px solid black;
+            box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
+            display: none; /* Initially hidden */
+            z-index: 1000;
+        ">
+            <span id="close-popup" style="cursor: pointer; float: right; font-weight: bold;">&times;</span>
+            <p id="popup-content" style="line-height: 1.6;">Click a point to see details.</p>
+        </div>
     </div>
 </div>
+
 <style>
-    html, body{
+    html, body {
         height: 100%;
         margin: 0;
         background-color: white;
     }
+
     .dashboard-wrapper {
         display: flex;
         flex-direction: column;
         align-items: center;
         justify-content: flex-start;
-        height: 100%; /* Full viewport height */
+        height: 100%;
         margin: 0;
     }
+
     h1 {
-    font-family: 'Comfortaa', sans-serif;
-    font-size: 3em;
-    font-weight: 700;
-    text-align: center;
-    color: #333;
-    letter-spacing: 2px;
-    margin-top: 35px;
-    margin-bottom: 50px;
-}
+        font-family: 'Comfortaa', sans-serif;
+        font-size: 3em;
+        font-weight: 700;
+        text-align: center;
+        color: #333;
+        letter-spacing: 2px;
+        margin-top: 35px;
+        margin-bottom: 50px;
+    }
+
     .dashboard-container {
-        width: 90%; /* Adjust as needed */
+        width: 90%;
         max-width: 1200px;
         height: auto;
-        min-height: 85vh; /* Adjust as needed */
+        min-height: 85vh;
         border: 1px solid #ccc;
         border-radius: 1.5px;
         overflow: hidden;
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     }
+
     #map-container {
         width: 85%;
         height: 85%;
     }
+
     iframe {
         width: 100%;
         height: 100%;
         border: none;
     }
 </style>
+
 <script>
 document.addEventListener("DOMContentLoaded", function(){
     function attachPlotlyClickHandler() {
@@ -91,6 +98,7 @@ document.addEventListener("DOMContentLoaded", function(){
                 var reason = point.customdata[2];
                 var status = point.customdata[3];
                 var date_created = point.customdata[4];  
+                var selectedPointIndex = point.pointIndex; // Capture the index of the clicked point
 
                 var date_created_display = new Date(date_created);
                 var options= {
@@ -114,7 +122,7 @@ document.addEventListener("DOMContentLoaded", function(){
                     <b>Status:</b> ${status}<br>
                     <b>Ticket created on:</b> ${date_created_display}<br>
                 `;
-                showPopupBox(ticketInfo, event.clientX, event.clientY);
+                showPopupBox(ticketInfo, selectedPointIndex);
             });
         } else {
             console.log("Plotly figure not found yet. Retrying...");
@@ -124,34 +132,33 @@ document.addEventListener("DOMContentLoaded", function(){
 
     attachPlotlyClickHandler(); 
 });
-function showPopupBox(info, x, y) {
+
+function showPopupBox(info, selectedPointIndex) {
     let popupBox = document.getElementById("popup-box");
     let popupContent = document.getElementById("popup-content");
+    let closeButton = document.getElementById("close-popup");
+    let myPlot = document.querySelector(".plotly-graph-div");
 
-    if (!popupBox || !popupContent) {
-        console.error("Popup box elements not found.");
+    if (!popupBox || !popupContent || !myPlot) {
+        console.error("Popup box or Plotly figure not found.");
         return;
     }
 
+    // Display the popup
     popupContent.innerHTML = info;
-    popupBox.style.display = "block"; // Show popup
+    popupBox.style.display = "block"; 
 
-    // Blur all other points
-    let myPlot = document.querySelector(".plotly-graph-div");
-    if (myPlot) {
-        Plotly.restyle(myPlot, { 'opacity': 0.2 });  // Reduce opacity for all markers
-        Plotly.restyle(myPlot, { 'opacity': 1 }, [selectedPointIndex]); // Restore opacity for the selected point
-    }
+    // Blur all other points except the selected one
+    Plotly.restyle(myPlot, { 'opacity': 0.2 });  
+    Plotly.restyle(myPlot, { 'opacity': 1 }, [selectedPointIndex]);
 
-    let closeButton = document.getElementById("close-popup");
-    closeButton.addEventListener("click", function() {
-        popupBox.style.display = "none"; // Hide popup 
+    // Ensure the close button resets everything when clicked
+    closeButton.onclick = function() {
+        popupBox.style.display = "none"; // Hide popup
 
         // Restore all points to full opacity
-        if (myPlot) {
-            Plotly.restyle(myPlot, { 'opacity': 1 });
-        }
-    }, { once: true }); // Ensures this event runs only once per click
+        Plotly.restyle(myPlot, { 'opacity': 1 });
+    };
 }
 </script>
 
