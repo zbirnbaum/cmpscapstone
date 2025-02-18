@@ -136,10 +136,22 @@ function showPopupBox(info, x, y) {
     popupContent.innerHTML = info;
     popupBox.style.display = "block"; // Show popup
 
+    // Blur all other points
+    let myPlot = document.querySelector(".plotly-graph-div");
+    if (myPlot) {
+        Plotly.restyle(myPlot, { 'opacity': 0.2 });  // Reduce opacity for all markers
+        Plotly.restyle(myPlot, { 'opacity': 1 }, [selectedPointIndex]); // Restore opacity for the selected point
+    }
+
     let closeButton = document.getElementById("close-popup");
     closeButton.addEventListener("click", function() {
         popupBox.style.display = "none"; // Hide popup 
-    });
+
+        // Restore all points to full opacity
+        if (myPlot) {
+            Plotly.restyle(myPlot, { 'opacity': 1 });
+        }
+    }, { once: true }); // Ensures this event runs only once per click
 }
 </script>
 
