@@ -31,7 +31,7 @@
     </div>
 </div>
 <style>
-    html, body{
+    html, body {
         height: 100%;
         margin: 0;
         background-color: white;
@@ -45,15 +45,15 @@
         margin: 0;
     }
     h1 {
-    font-family: 'Comfortaa', sans-serif;
-    font-size: 3em;
-    font-weight: 700;
-    text-align: center;
-    color: #333;
-    letter-spacing: 2px;
-    margin-top: 35px;
-    margin-bottom: 50px;
-}
+        font-family: 'Comfortaa', sans-serif;
+        font-size: 3em;
+        font-weight: 700;
+        text-align: center;
+        color: #333;
+        letter-spacing: 2px;
+        margin-top: 35px;
+        margin-bottom: 50px;
+    }
     .dashboard-container {
         width: 90%; /* Adjust as needed */
         max-width: 1200px;
@@ -112,7 +112,12 @@ document.addEventListener("DOMContentLoaded", function(){
                     <b>Status:</b> ${status}<br>
                     <b>Ticket created on:</b> ${date_created_display}<br>
                 `;
-                showPopupBox(ticketInfo, event.clientX, event.clientY);
+                
+                // Apply blur effect to all points except the clicked one
+                blurOtherPoints(point.pointIndex);
+
+                // Show the popup with ticket details
+                showPopupBox(ticketInfo);
             });
         } else {
             console.log("Plotly figure not found yet. Retrying...");
@@ -122,7 +127,9 @@ document.addEventListener("DOMContentLoaded", function(){
 
     attachPlotlyClickHandler(); 
 });
-function showPopupBox(info, x, y) {
+
+// Function to show the popup box
+function showPopupBox(info) {
     let popupBox = document.getElementById("popup-box");
     let popupContent = document.getElementById("popup-content");
 
@@ -137,8 +144,35 @@ function showPopupBox(info, x, y) {
     let closeButton = document.getElementById("close-popup");
     closeButton.addEventListener("click", function() {
         popupBox.style.display = "none"; // Hide popup 
+
+        // Reset all points to full visibility when closing the popup
+        resetAllPoints();
     });
+}
+
+// Function to blur all points except the selected one
+function blurOtherPoints(selectedIndex) {
+    var myPlot = document.querySelector(".plotly-graph-div");
+
+    if (myPlot) {
+        var totalPoints = myPlot.data[0].lat.length; // Get the number of points
+
+        var opacityArray = Array(totalPoints).fill(0.2); // Set all to blurred
+        opacityArray[selectedIndex] = 1; // Keep the selected point in focus
+
+        Plotly.restyle(myPlot, {'marker.opacity': [opacityArray]});
+    }
+}
+
+// Function to reset all points to full opacity
+function resetAllPoints() {
+    var myPlot = document.querySelector(".plotly-graph-div");
+
+    if (myPlot) {
+        Plotly.restyle(myPlot, {'marker.opacity': 1}); // Restore all points to full opacity
+    }
 }
 </script>
 
 {% endblock %}
+
