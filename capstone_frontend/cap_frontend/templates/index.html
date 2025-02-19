@@ -122,6 +122,22 @@ document.addEventListener("DOMContentLoaded", function(){
 
     attachPlotlyClickHandler(); 
 });
+function attachClosePopupHandler() {
+    let popupBox = document.getElementById("popup-box");
+    let closeButton = document.getElementById("close-popup");
+
+    if (!popupBox || !closeButton) {
+        console.error("Popup close elements not found.");
+        return;
+    }
+
+    closeButton.addEventListener("click", function () {
+        popupBox.style.display = "none";// Hide popup
+        if (myPlot) {
+            Plotly.restyle(myPlot, 'selectedpoints', [null]); 
+    });
+}
+
 function showPopupBox(info, x, y) {
     let popupBox = document.getElementById("popup-box");
     let popupContent = document.getElementById("popup-content");
@@ -134,14 +150,8 @@ function showPopupBox(info, x, y) {
     popupContent.innerHTML = info;
     popupBox.style.display = "block"; // Show popup
 
-    let closeButton = document.getElementById("close-popup");
-    closeButton.addEventListener("click", function() {
-        popupBox.style.display = "none"; // Hide popup
-        
-        }
-        
-    });
-    });
+    attachClosePopupHandler(); // Attach close button handler
+}
 }
 </script>
 
