@@ -112,7 +112,7 @@ document.addEventListener("DOMContentLoaded", function(){
                     <b>Status:</b> ${status}<br>
                     <b>Ticket created on:</b> ${date_created_display}<br>
                 `;
-                showPopupBox(ticketInfo, event.clientX, event.clientY);
+                showPopupBox(ticketInfo, event.clientX, event.clientY, myPlot);
             });
         } else {
             console.log("Plotly figure not found yet. Retrying...");
@@ -122,7 +122,7 @@ document.addEventListener("DOMContentLoaded", function(){
 
     attachPlotlyClickHandler(); 
 });
-function showPopupBox(info, x, y) {
+function showPopupBox(info, x, y, myPlot) {
     let popupBox = document.getElementById("popup-box");
     let popupContent = document.getElementById("popup-content");
 
