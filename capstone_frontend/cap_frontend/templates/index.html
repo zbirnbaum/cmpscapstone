@@ -137,7 +137,7 @@ function showPopupBox(info, x, y) {
     let closeButton = document.getElementById("close-popup");
     closeButton.addEventListener("click", function() {
         popupBox.style.display = "none"; // Hide popup
-        Plotly.relayout(myPlot, { 'selectedpoints': null });
+        Plotly.relayout(myPlot, { 'selectedpoints': [] });
     });
 }
 </script>
