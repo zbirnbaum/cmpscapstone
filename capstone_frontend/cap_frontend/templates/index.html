@@ -132,9 +132,7 @@ function attachClosePopupHandler() {
     }
 
     closeButton.addEventListener("click", function () {
-        popupBox.style.display = "none";// Hide popup
-        if (myPlot) {
-            Plotly.restyle(myPlot, 'selectedpoints', [null]); 
+        popupBox.style.display = "none";// Hide popup 
     });
 }
 
