@@ -139,6 +139,7 @@ function showPopupBox(info, x, y) {
         popupBox.style.display = "none"; // Hide popup
         Plotly.relayout(myPlot, { 'selectedpoints': [] });
         Plotly.redraw(myPlot);
+        Plotly.react(myPlot, myPlot.data, myPlot.layout);
 
     });
 }
