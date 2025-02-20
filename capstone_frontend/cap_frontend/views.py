@@ -61,7 +61,7 @@ def index(request):
         mapbox=dict(
             center=new_orleans_center,
             zoom=10,
-            style="satellite",
+            style="open-street-map",
             accesstoken="pk.eyJ1IjoiZGNpY2VybzIiLCJhIjoiY202c2FkNXN4MDVuOTJrcHc0OWxlaXVjOCJ9.QAnyo9NuHkniCz-_zPqpUA"
         ),
         width=1200,
