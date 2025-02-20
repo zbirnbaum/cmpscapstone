@@ -111,6 +111,8 @@ document.addEventListener("DOMContentLoaded", function(){
                     <b>Issue:</b> ${reason}<br>
                     <b>Status:</b> ${status}<br>
                     <b>Ticket created on:</b> ${date_created_display}<br>
+                    <br>
+                    <i style="color: red;">Click the selected point again to reset the map.</i>
                 `;
                 showPopupBox(ticketInfo, event.clientX, event.clientY, myPlot);
             });
