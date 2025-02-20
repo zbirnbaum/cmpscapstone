@@ -44,13 +44,13 @@ def index(request):
 
     fig.add_trace(
         go.Scattermap(
-            hoverlabel=dict(bgcolor="white", font_size=12),
+            hoverlabel=dict(bgcolor="#90EE90", font_size=12),
             hoverinfo="text",
             hovertext = tree_related_311["hover_text"],
             lat=tree_related_311['latitude'],
             lon=tree_related_311['longitude'],
             mode='markers',
-            marker=dict(size=6, color='green'),
+            marker=dict(size=10, color='green'),
             customdata= tree_related_311[['request_number', 'address', 'reason', 'status', 'date_created']].values.tolist()
         )
     )
