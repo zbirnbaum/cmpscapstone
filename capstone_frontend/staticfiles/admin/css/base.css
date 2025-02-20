@@ -547,7 +547,7 @@ a.button {
 }
 
 .button[disabled], input[type=submit][disabled], input[type=button][disabled] {
-    opacity: 0.4;
+    opacity: 1;
 }
 
 .button.default, input[type=submit].default, .submit-row input.default {
@@ -565,7 +565,7 @@ a.button {
 .button[disabled].default,
 input[type=submit][disabled].default,
 input[type=button][disabled].default {
-    opacity: 0.4;
+    opacity: 1;
 }
 
 
