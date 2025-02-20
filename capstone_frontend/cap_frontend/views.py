@@ -51,7 +51,7 @@ def index(request):
             lat=tree_related_311['latitude'],
             lon=tree_related_311['longitude'],
             mode='markers',
-            marker=dict(size=8, color='green', line=dict(width=2, color='black')),
+            marker=dict(size=8, color='green'),
             customdata= tree_related_311[['request_number', 'address', 'reason', 'status', 'date_created']].values.tolist()
         )
     )
