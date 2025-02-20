@@ -120,7 +120,7 @@
     text-indent: -3000px;
     overflow: hidden;
     cursor: default;
-    opacity: 0.55;
+    opacity: 1;
 }
 
 .active.selector-add, .active.selector-remove {
@@ -157,7 +157,7 @@ a.selector-chooseall, a.selector-clearall {
     line-height: 16px;
     color: var(--body-quiet-color);
     text-decoration: none;
-    opacity: 0.55;
+    opacity: 1;
 }
 
 a.active.selector-chooseall:focus, a.active.selector-clearall:focus,
