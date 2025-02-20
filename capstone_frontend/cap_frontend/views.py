@@ -44,35 +44,29 @@ def index(request):
     fig = go.Figure()
 
     fig.add_trace(
-        go.Scattermapbox(
-            hoverlabel=dict(bgcolor="LightGreen", font_size=12),
+        go.Scattermap(
+            hoverlabel=dict(bgcolor="#90EE90", font_size=12),
             hoverinfo="text",
-            hovertext=tree_related_311["hover_text"],
+            hovertext = tree_related_311["hover_text"],
             lat=tree_related_311['latitude'],
             lon=tree_related_311['longitude'],
             mode='markers',
-            marker=dict(
-                size=8,
-                symbol="tree"
-            ),
-            customdata=tree_related_311[['request_number', 'address', 'reason', 'status', 'date_created']].values.tolist()
+            marker=dict(size=10, color='green'),
+            customdata= tree_related_311[['request_number', 'address', 'reason', 'status', 'date_created']].values.tolist()
         )
     )
 
-    # Set Mapbox layout
+
     fig.update_layout(
-        mapbox=dict(
-            center=new_orleans_center,
-            zoom=10,
-            style="open-street-map",
-            accesstoken="pk.eyJ1IjoiZGNpY2VybzIiLCJhIjoiY202c2FkNXN4MDVuOTJrcHc0OWxlaXVjOCJ9.QAnyo9NuHkniCz-_zPqpUA"
-        ),
+        map=dict(center=new_orleans_center, zoom=10, style="open-street-map"),
+        #autosize=True,
         width=1200,
         height=900,
-        dragmode='pan',
-        clickmode='event+select',
+        dragmode = 'pan',
+        clickmode = 'event+select',
         hovermode='closest'
     )
+
 
 
     plot_html = pio.to_html(fig, full_html=False)
