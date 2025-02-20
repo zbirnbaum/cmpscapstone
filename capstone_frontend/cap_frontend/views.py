@@ -62,16 +62,18 @@ def index(request):
     # Set Mapbox layout
     fig.update_layout(
         mapbox=dict(
+            map=dict(center=new_orleans_center, zoom=10, style="satellite"),
+            #autosize=True,
+            width=1200,
+            height=900,
+            dragmode = 'pan',
+            clickmode = 'event+select',
+            hovermode='closest'
             style="satellite",  # Or use "streets", "open-street-map"
             accesstoken="pk.eyJ1IjoiZGNpY2VybzIiLCJhIjoiY202c2FkNXN4MDVuOTJrcHc0OWxlaXVjOCJ9.QAnyo9NuHkniCz-_zPqpUA",
             zoom=10,
-            center=new_orleans_center
+            
         ),
-        width=1200,
-        height=900,
-        dragmode='pan',
-        clickmode='event+select',
-        hovermode='closest'
     )
 
     plot_html = pio.to_html(fig, full_html=False)
