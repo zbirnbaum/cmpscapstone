@@ -64,6 +64,7 @@ def index(request):
         height=900,
         dragmode = 'pan',
         clickmode = 'event+select',
+        paper_bgcolor="LightBlue",
         hovermode='closest'
     )
 
