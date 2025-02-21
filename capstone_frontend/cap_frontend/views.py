@@ -72,4 +72,3 @@ def index(request):
     plot_html = pio.to_html(fig, full_html=False)
 
     return render(request, 'index.html', {'plot_html': plot_html})
-
