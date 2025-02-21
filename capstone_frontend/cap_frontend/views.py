@@ -60,7 +60,7 @@ def index(request):
     fig.update_layout(
         map=dict(center=new_orleans_center, zoom=10, style="open-street-map"),
         # autosize = True,
-        width = 1200,
+        width = 1000,
         height= 900,
         dragmode = 'pan',
         clickmode = 'event+select',
