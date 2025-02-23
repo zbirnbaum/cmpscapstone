@@ -4,16 +4,24 @@
 
 {% block content %}
     <h1 style = "text-align: center;">About Our Capstone Project</h1>
-
-    <div style="display: flex; justify-content: space-between; padding: 50px; gap: 30px;">
+    <div style="border: 3px solid black; padding: 20px; border-radius: 10px; margin-left: 200px; margin-right: 200px; margin-top: 30px;  background-color:#004d00c3;">
+        <p style = "text-align: center; font-size: 20px; color: white;">The City Data Group is developing an interactive dashboard that highlights 
+            reported tree hazards in New Orleans, the severity of each report, and provides precise locations of tree damage, 
+            offering a clear and accessible view of the city's tree maintenance needs. Information is sourced from the 311 
+            OPCD calls and Tree Location datasets from data.nola.gov. Our goal is to incorporate the Tree Location data to 
+            show the nearest city-owned trees to the report. Additionally, we plan to improve interactivity by incorporating
+            features that will allow residents to upload photos and comment on specific cases, with the goals of fostering 
+            community engagement, improving data accuracy, and providing additional context.</p>
+    </div>
+    <div style="display: flex; justify-content: space-between; padding: 30px; gap: 30px;">
         <div style="width: 50%; padding-right: 10px; border: 2px solid black; padding: 20px; border-radius: 10px;">
-            <p style="font-size: 20px; text-align: center;">The City Data Group is developing an interactive dashboard that highlights 
-        reported tree hazards in New Orleans, the severity of each report, and provides precise locations of tree damage, 
-        offering a clear and accessible view of the city's tree maintenance needs. Information is sourced from the 311 
-        OPCD calls and Tree Location datasets from data.nola.gov. Our goal is to incorporate the Tree Location data to 
-        show the nearest city-owned trees to the report. Additionally, we plan to improve interactivity by incorporating
-        features that will allow residents to upload photos and comment on specific cases, with the goals of fostering 
-        community engagement, improving data accuracy, and providing additional context.</p>
+            <p style="font-size: 19px; margin-bottom: 10px;"><b>About our data:</b></p>
+                <p style="font-size: 19px;">The data on the homepage is sourced from 
+                    <a href="https://data.nola.gov/City-Administration/311-OPCD-Calls-2012-Present-/2jgv-pqrq/about_data" target="_blank" rel="noopener noreferrer">https://data.nola.gov/City-Administration/311-OPCD-Calls-2012-Present-/2jgv-pqrq/about_data 
+                    </a> with a script that runs daily at midnight UTC. The script fetches the new rows in the dataset 
+                    (rows where that request number has not already been fetched), fills any blank fields with 'Unknown', and inserts these 
+                    rows into our Heroku database. 
+                    </p>
         </div>
 
         <div style="width: 50%; padding-left: 10px; border: 2px solid black; padding: 20px; border-radius: 10px;">
@@ -36,7 +44,7 @@
         </div>
     </div>
 
-    <div style="text-align: center; margin-top: 30px;">
+    <div style="text-align: center;">
     <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS6erNnr-YKYv3IbtD-xLkdK8Y3b8mNic_40g&s" alt="Project Image" style="max-width: 50%; height: 50%; border-radius: 10px;">
 </div>
     <p style="font-size: 20px; margin: 30px; text-align: center;">
