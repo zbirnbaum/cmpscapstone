@@ -1,12 +1,14 @@
 
-from django.http import HttpResponse
+from django.http import JsonResponse
 from django.template import loader
 from django.shortcuts import render
 from .models import Calls, Trees
+from math import sqrt
 
 import plotly.graph_objects as go
 import pandas as pd
 import plotly.io as pio
+import numpy as np
 
 def index(request):
     return render(request, 'index.html')
@@ -14,6 +16,32 @@ def about(request):
     return render(request, 'about.html')
 def analytics(request):
     return render(request, 'analytics.html')
+
+
+def get_nearest_trees_from_db(lat, lon):
+    lat, lon = float(lat), float(lon)
+
+    # Fetch all trees from the database and convert to dataframe with separate lat and long columns
+    trees = Trees.objects.values('tree_id', 'location')
+    treesdata = pd.DataFrame(list(trees))
+    treesdata[['latitude', 'longitude']] = treesdata['location'].str.extract(r'\(([^,]+), ([^)]+)\)').astype(float)
+    
+    # Compute Euclidean distance
+    treesdata['distance'] = ((treesdata['latitude'] - lat) ** 2 + (treesdata['longitude'] - lon) ** 2).apply(sqrt)
+
+    # Sort by distance and return the k nearest trees
+    nearest_trees = treesdata.nsmallest(3, 'distance')[['tree_id', 'latitude', 'longitude']].to_dict(orient='records')
+    return nearest_trees
+
+def nears(request):
+    lat = float(request.GET.get('lat'))
+    lon = float(request.GET.get('lon'))
+
+    nearest_trees = get_nearest_trees_from_db(lat, lon) 
+
+    response = JsonResponse({"nearest_trees": nearest_trees}, safe=False)
+    return response
+
 
 new_orleans_center = {"lon": -90.07, "lat": 29.95}
 

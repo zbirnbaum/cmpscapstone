@@ -16,11 +16,13 @@
     <div style="display: flex; justify-content: space-between; padding: 30px; gap: 30px;">
         <div style="width: 50%; padding-right: 10px; border: 2px solid black; padding: 20px; border-radius: 10px;">
             <p style="font-size: 19px; margin-bottom: 10px;"><b>About our data:</b></p>
-                <p style="font-size: 19px;">The data on the homepage is sourced from 
+                <p style="font-size: 19px;">The 311 report data on the homepage is sourced from 
                     <a href="https://data.nola.gov/City-Administration/311-OPCD-Calls-2012-Present-/2jgv-pqrq/about_data" target="_blank" rel="noopener noreferrer">https://data.nola.gov/City-Administration/311-OPCD-Calls-2012-Present-/2jgv-pqrq/about_data 
                     </a> with a script that runs daily at midnight UTC. The script fetches the new rows in the dataset 
                     (rows where that request number has not already been fetched), fills any blank fields with 'Unknown', and inserts these 
-                    rows into our Heroku database. 
+                    rows into our Heroku database. From there, we filter out closed requests, in addition to requests unrelated to tree 
+                    issues/hazards into a DataFrame object that is used to display the points on the map. In the future, report points will 
+                    connect to New Orleans tree locations by latitude and longitude coordinates and displayed on the map using a 3-nearest-neighbors algorithm.
                     </p>
         </div>
 
