@@ -141,44 +141,28 @@ document.addEventListener("DOMContentLoaded", function(){
                         showPopupBox(ticketInfo, myPlot);
                         //console.log("Map container exists:", document.getElementById("map-container") !== null);
 
-                        /* Extract lat/lon for trees
+                        //Extract lat/lon for trees
                         const treeLats = nearest_trees.map(tree => tree.latitude);
                         const treeLons = nearest_trees.map(tree => tree.longitude);
                         const treeNames = nearest_trees.map(tree => tree.tree_id);
 
                         var treeTrace = {
-                            type: "scattermapbox",
+                            type: "scattermap",
                             mode: "markers",
                             lat: treeLats,
                             lon: treeLons,
-                            marker: { color: "red", size: 10 },
+                            marker: {
+                                symbol: "park",  // Uses a built-in tree icon
+                                size: 10
+                            },
                             text: treeNames,
-                            //hoverinfo: "text",
-                            name: "Nearest Trees"
+                            hoverinfo: "text",
                         };
 
-                        var mapDiv = document.querySelector(".js-plotly-plot");
-                        console.log("DATA ", mapDiv.data, treeLats, treeLons, treeNames);
 
-                        // Add the new trace
-                        console.log("Adding new trace:", [treeTrace]);
-                        if (mapDiv) {
-                            console.log("Found existing Plotly map instance.");
-
-                            var layout = {
-                                geo: {
-                                    mapbox: {
-                                        style: "open-street-map"
-                                    }
-                                }
-                            }
-                            if (!mapDiv.data) {
-                                Plotly.newPlot(mapDiv, [], layout);
-                            }
-                            Plotly.addTraces(mapDiv, [treeTrace]);
-                        } else {
-                            console.error("Error: No Plotly map instance found.");
-                        }*/
+                        var updatedData = myPlot.data.filter(trace => trace.name !== "Nearest Trees");
+                        updatedData.push(treeTrace);
+                        Plotly.react(myPlot, updatedData, myPlot.layout);
                     })
             })
         } else {

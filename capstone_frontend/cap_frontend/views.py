@@ -58,8 +58,7 @@ def index(request):
        'Trucks hitting overhead oak tree limbs',
        'Sidewalk repair after tree removal',
        'Oak tree blocking water line',
-       'Tree roots',
-       'Christmas Tree Recycle Pick Up'])].copy()
+       'Tree roots'])].copy()
 
     trees = Trees.objects.values()
     treesdata = pd.DataFrame(list(trees))
@@ -86,7 +85,7 @@ def index(request):
 
 
     fig.update_layout(
-        map=dict(center=new_orleans_center, zoom=10, style="open-street-map"),
+        map=dict(center=new_orleans_center, zoom=13, style="open-street-map"),
         # autosize = True,
         width = 1100,
         height= 900,
