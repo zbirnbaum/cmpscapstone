@@ -22,7 +22,7 @@ def get_nearest_trees_from_db(lat, lon):
     lat, lon = float(lat), float(lon)
 
     # Fetch all trees from the database and convert to dataframe with separate lat and long columns
-    trees = Trees.objects.values('tree_id', 'location')
+    trees = Trees.objects.values('tree_id', 'location', 'common_name')
     treesdata = pd.DataFrame(list(trees))
     treesdata[['latitude', 'longitude']] = treesdata['location'].str.extract(r'\(([^,]+), ([^)]+)\)').astype(float)
     
@@ -30,7 +30,7 @@ def get_nearest_trees_from_db(lat, lon):
     treesdata['distance'] = ((treesdata['latitude'] - lat) ** 2 + (treesdata['longitude'] - lon) ** 2).apply(sqrt)
 
     # Sort by distance and return the k nearest trees
-    nearest_trees = treesdata.nsmallest(3, 'distance')[['tree_id', 'latitude', 'longitude']].to_dict(orient='records')
+    nearest_trees = treesdata.nsmallest(3, 'distance')[['tree_id', 'latitude', 'longitude', 'common_name']].to_dict(orient='records')
     return nearest_trees
 
 def nears(request):
@@ -79,7 +79,8 @@ def index(request):
             lon=tree_related_311['longitude'],
             mode='markers',
             marker=dict(size=8, color='green'),
-            customdata= tree_related_311[['request_number', 'address', 'reason', 'status', 'date_created']].values.tolist()
+            customdata= tree_related_311[['request_number', 'address', 'reason', 'status', 'date_created']].values.tolist(),
+            name= "311 Reports"
         )
     )
 

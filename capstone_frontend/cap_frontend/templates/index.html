@@ -124,7 +124,7 @@ document.addEventListener("DOMContentLoaded", function(){
 
                         let treeInfo = '';
                         nearest_trees.forEach(tree => {
-                            treeInfo += `<li><b>Tree ID:</b> ${tree.tree_id}</li>`;
+                            treeInfo += `<li><b>Tree ID:</b> ${tree.tree_id}, <b>Type: </b>${tree.common_name}</li>`;
                         });
                         treeInfo += `</ul>`;
 
@@ -152,13 +152,14 @@ document.addEventListener("DOMContentLoaded", function(){
                             lat: treeLats,
                             lon: treeLons,
                             marker: {
-                                symbol: "park",  // Uses a built-in tree icon
-                                size: 10
+                                symbol: "park",  // Uses a built-in tree icon,
+                                //color: "red",
+                                size: 8
                             },
                             text: treeNames,
                             hoverinfo: "text",
+                            name: "Nearest Trees"
                         };
-
 
                         var updatedData = myPlot.data.filter(trace => trace.name !== "Nearest Trees");
                         updatedData.push(treeTrace);
