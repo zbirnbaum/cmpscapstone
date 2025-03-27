@@ -1,14 +1,17 @@
 
-from django.http import JsonResponse
+from django.http import JsonResponse, HttpResponseRedirect
 from django.template import loader
 from django.shortcuts import render
+from django.conf import settings
 from .models import Calls, Trees
 from math import sqrt
+from .forms import PhotoUploadForm
 
 import plotly.graph_objects as go
 import pandas as pd
 import plotly.io as pio
 import numpy as np
+import os
 
 def index(request):
     return render(request, 'index.html')
@@ -16,7 +19,18 @@ def about(request):
     return render(request, 'about.html')
 def analytics(request):
     return render(request, 'analytics.html')
+def upload_photo(request):
+    if request.method == "POST":
+        form = PhotoUploadForm(request.POST, request.FILES)
+        if form.is_valid():
+            instance = form.save() #save form data to database
+            return HttpResponseRedirect("/upload_success/") #change to your url
+    else:
+        form = PhotoUploadForm()
+    return render(request, "upload.html", {"form": form})
 
+def upload_success(request):
+    return render(request, "upload_success.html")
 
 def get_nearest_trees_from_db(lat, lon):
     lat, lon = float(lat), float(lon)
