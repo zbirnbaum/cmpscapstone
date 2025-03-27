@@ -17,6 +17,8 @@ Including another URLconf
 
 from django.contrib import admin
 from django.urls import path
+from django.conf import settings
+from django.conf.urls.static import static
 
 from . import views 
 urlpatterns = [
@@ -25,5 +27,6 @@ urlpatterns = [
     path('about/', views.about, name='about'),
     path('analytics/', views.analytics, name='analytics'), 
     path('get_nearest_trees/', views.nears, name='get_nearest_trees'),
+    path('upload/', views.upload_photo, name = 'upload')
 
-]
+]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)##allows for URLS to be created w/ uploaded images
