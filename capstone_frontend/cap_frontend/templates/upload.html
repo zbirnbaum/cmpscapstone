@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% block content %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Upload Tree Photo</title>
+</head>
+<body>
+    <h1>Upload an Image</h1>
+
+    <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}  <!-- Render form fields dynamically -->
+        <button type="submit">Upload</button>
+    </form>
+    
+    {% if form.errors %}
+        <p style="color: red;">There was an error with your form.</p>
+    {% endif %}
+</body>
+</html>
+{% endblock %}
