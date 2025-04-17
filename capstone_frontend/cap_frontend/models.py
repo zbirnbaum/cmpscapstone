@@ -147,12 +147,11 @@ class DjangoSession(models.Model):
 
 
 class Photos(models.Model):
-   location = models.TextField(blank=True, null=True)
    comment = models.TextField(blank=True, null=True)
    image = models.ImageField(blank=True, null=True, upload_to='images/' ) #can change if uploading picture is optional
 
    class Meta:
-       managed = False
+       #managed = False
        db_table = 'photos'
 
 
